@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "471339895380",
+    "project_id": "mini-project-cf872",
+    "storage_bucket": "mini-project-cf872.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:471339895380:android:cd19f45f6d8fe13ad53bc1",
+        "android_client_info": {
+          "package_name": "com.example.productivity_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "471339895380-2kbfm7nlfsjqgl1bdng4vvpj2m34c64i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPkdwyCeQNSdLCVJ2WO5Mm11EWzZoSdu4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "471339895380-2kbfm7nlfsjqgl1bdng4vvpj2m34c64i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
