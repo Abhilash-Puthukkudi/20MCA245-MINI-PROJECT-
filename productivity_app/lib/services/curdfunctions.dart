@@ -17,3 +17,8 @@ update() async {
       .update({'age': 20});
   log("updated");
 }
+
+delete(String colname, docName) async {
+  FirebaseFirestore.instance.collection(colname).doc(docName).delete();
+  log("dataDeleted");
+}
