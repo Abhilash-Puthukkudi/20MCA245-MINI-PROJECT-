@@ -22,3 +22,19 @@ delete(String colname, docName) async {
   FirebaseFirestore.instance.collection(colname).doc(docName).delete();
   log("dataDeleted");
 }
+
+addTodo(String content, String uid) async {
+  var time = DateTime.now();
+  await FirebaseFirestore.instance
+      .collection('productivityapp')
+      .doc(uid)
+      .collection('todo')
+      .doc(time.toString())
+      .set({
+    'todo': content,
+    'done': false,
+    'time': time.toString(),
+  });
+  log("content is " + content);
+  log(time.toString());
+}
