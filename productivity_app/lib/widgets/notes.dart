@@ -78,6 +78,71 @@ class _NotesState extends State<Notes> {
                             setState(() {});
                           },
                           child: ListTile(
+                            onTap: () {
+                              _updatecontentController.text =
+                                  listdocs[index]['content'];
+                              _updatetitleController.text =
+                                  listdocs[index]['title'];
+                              showDialog(
+                                  context: context,
+                                  builder: (context) => AlertDialog(
+                                        title: Text("Update Note  "),
+                                        content: Form(
+                                          key: _formkey,
+                                          child: SingleChildScrollView(
+                                            child: Column(
+                                              children: [
+                                                TextFormField(
+                                                  key: ValueKey('title'),
+                                                  controller:
+                                                      _updatetitleController,
+                                                  decoration: InputDecoration(
+                                                      hintText: "Enter Title "),
+                                                ),
+                                                TextFormField(
+                                                  key: ValueKey('content'),
+                                                  controller:
+                                                      _updatecontentController,
+                                                  keyboardType:
+                                                      TextInputType.multiline,
+                                                  maxLines: 50,
+                                                  decoration: InputDecoration(
+                                                      hintText:
+                                                          "update your content here",
+                                                      labelText:
+                                                          "update content of your note",
+                                                      border:
+                                                          OutlineInputBorder()),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        actions: [
+                                          TextButton(
+                                              onPressed: () {
+                                                String updatecontent =
+                                                    _updatecontentController
+                                                        .text;
+                                                String updatetitle =
+                                                    _updatetitleController.text;
+                                                updateNote(
+                                                    uid,
+                                                    listdocs[index]['time'],
+                                                    updatetitle,
+                                                    updatecontent);
+                                                Navigator.of(context).pop();
+                                                ScaffoldMessenger.of(context)
+                                                    .showSnackBar(SnackBar(
+                                                        backgroundColor:
+                                                            Colors.blue,
+                                                        content: Text(
+                                                            'Note updated')));
+                                              },
+                                              child: Text("Update Note"))
+                                        ],
+                                      ));
+                            },
                             title: Center(
                                 child: Text(
                               listdocs[index]['title'],
@@ -112,23 +177,27 @@ class _NotesState extends State<Notes> {
                     title: Text("Enter Note  "),
                     content: Form(
                       key: _formkey,
-                      child: Column(
-                        children: [
-                          TextFormField(
-                            key: ValueKey('title'),
-                            controller: _titleController,
-                            decoration:
-                                InputDecoration(hintText: "Enter Title "),
-                          ),
-                          TextFormField(
-                            key: ValueKey('content'),
-                            controller: _contentController,
-                            keyboardType: TextInputType.multiline,
-                            maxLines: null,
-                            decoration:
-                                InputDecoration(hintText: "Enter text here"),
-                          )
-                        ],
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            TextFormField(
+                              key: ValueKey('title'),
+                              controller: _titleController,
+                              decoration:
+                                  InputDecoration(hintText: "Enter Title "),
+                            ),
+                            TextFormField(
+                              key: ValueKey('content'),
+                              controller: _contentController,
+                              keyboardType: TextInputType.multiline,
+                              maxLines: 50,
+                              decoration: InputDecoration(
+                                  hintText: "Enter text here",
+                                  labelText: "Type content of your text",
+                                  border: OutlineInputBorder()),
+                            )
+                          ],
+                        ),
                       ),
                     ),
                     actions: [

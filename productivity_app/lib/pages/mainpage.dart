@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:productivity_app/widgets/copypaste.dart';
 import 'package:productivity_app/widgets/daycounter.dart';
+import 'package:productivity_app/widgets/dayplanner.dart';
 import 'package:productivity_app/widgets/notes.dart';
 import 'package:productivity_app/widgets/todo.dart';
 
@@ -22,6 +24,10 @@ class _MainpageState extends State<Mainpage> {
         return Notes();
       case 2:
         return DayCounter();
+      case 3:
+        return Dayplanner();
+      case 4:
+        return CopyPaste();
       default:
         return Todo();
     }

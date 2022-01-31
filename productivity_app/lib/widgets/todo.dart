@@ -56,64 +56,78 @@ class _TodoState extends State<Todo> {
                   return Card(
                       child: Padding(
                     padding: EdgeInsets.all(14),
-                    child: ListTile(
-                      trailing: IconButton(
-                        icon: Icon(Icons.delete),
-                        onPressed: () {
-                          todo_Delete(uid, listdocs[index]['time']);
-                        },
+                    child: Dismissible(
+                      background: Container(
+                        child: Center(
+                          child: Text(
+                            'Delete',
+                            style: TextStyle(
+                                fontStyle: FontStyle.italic,
+                                fontSize: 30,
+                                color: Colors.red),
+                          ),
+                        ),
                       ),
-                      onTap: () {
-                        _updatetodoController.text = listdocs[index]['todo'];
-                        // Navigator.push(
-                        //     context,
-                        //     MaterialPageRoute(
-                        //         builder: (context) => ItemScreen(
-                        //               name: listdocs[index]['name'],
-                        //               animal: listdocs[index]['animal'],
-                        //               age: listdocs[index]['age'],
-                        //             )));
-                        showDialog(
-                            context: context,
-                            builder: (context) => AlertDialog(
-                                  title: Text("update Todo"),
-                                  content: Form(
-                                      key: _formkey,
-                                      child: TextFormField(
-                                        key: ValueKey('todo'),
-                                        controller: _updatetodoController,
-                                        decoration: InputDecoration(
-                                            hintText: "Enter Task to Do"),
-                                        onSaved: (value) {
-                                          setState(() {
-                                            todo = value!;
-                                          });
-                                        },
-                                      )),
-                                  actions: [
-                                    TextButton(
-                                        onPressed: () {
-                                          todo = _updatetodoController.text;
-
-                                          // here you write the codes to input the data into firestore
-
-                                          updatetodo(uid,
-                                              listdocs[index]['time'], todo);
-                                          Navigator.of(context).pop();
-                                          ScaffoldMessenger.of(context)
-                                              .showSnackBar(
-                                            SnackBar(
-                                                backgroundColor: Colors.blue,
-                                                content: Text("Todo updated ")),
-                                          );
-                                        },
-                                        child: Text("update"))
-                                  ],
-                                ));
+                      key: ValueKey<QueryDocumentSnapshot>(listdocs[index]),
+                      onDismissed: (DismissDirection direction) {
+                        // deleteNote();
+                        todo_Delete(uid, listdocs[index]['time']);
+                        setState(() {});
                       },
-                      title: Text(
-                        listdocs[index]['todo'],
-                        style: TextStyle(fontSize: 40),
+                      child: ListTile(
+                        onTap: () {
+                          _updatetodoController.text = listdocs[index]['todo'];
+                          // Navigator.push(
+                          //     context,
+                          //     MaterialPageRoute(
+                          //         builder: (context) => ItemScreen(
+                          //               name: listdocs[index]['name'],
+                          //               animal: listdocs[index]['animal'],
+                          //               age: listdocs[index]['age'],
+                          //             )));
+                          showDialog(
+                              context: context,
+                              builder: (context) => AlertDialog(
+                                    title: Text("update Todo"),
+                                    content: Form(
+                                        key: _formkey,
+                                        child: TextFormField(
+                                          key: ValueKey('todo'),
+                                          controller: _updatetodoController,
+                                          decoration: InputDecoration(
+                                              hintText: "Enter Task to Do"),
+                                          onSaved: (value) {
+                                            setState(() {
+                                              todo = value!;
+                                            });
+                                          },
+                                        )),
+                                    actions: [
+                                      TextButton(
+                                          onPressed: () {
+                                            todo = _updatetodoController.text;
+
+                                            // here you write the codes to input the data into firestore
+
+                                            updatetodo(uid,
+                                                listdocs[index]['time'], todo);
+                                            Navigator.of(context).pop();
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              SnackBar(
+                                                  backgroundColor: Colors.blue,
+                                                  content:
+                                                      Text("Todo updated ")),
+                                            );
+                                          },
+                                          child: Text("update"))
+                                    ],
+                                  ));
+                        },
+                        title: Text(
+                          listdocs[index]['todo'],
+                          style: TextStyle(fontSize: 40),
+                        ),
                       ),
                     ),
                   ));

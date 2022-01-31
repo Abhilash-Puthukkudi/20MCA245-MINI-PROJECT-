@@ -90,3 +90,14 @@ deleteNote(String uid, timeparameter) async {
   log("note deleted");
   // log(time.toString());
 }
+
+updateNote(
+    String uid, String timeparameter, String updatetitle, updatecontent) async {
+  FirebaseFirestore.instance
+      .collection('productivityapp')
+      .doc(uid)
+      .collection('notes')
+      .doc(timeparameter)
+      .update({'content': updatecontent, 'title': updatetitle});
+  log("updated");
+}
