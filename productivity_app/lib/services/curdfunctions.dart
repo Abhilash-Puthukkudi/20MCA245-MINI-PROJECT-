@@ -62,3 +62,31 @@ todo_Delete(uid, timeparameter) {
       .doc(timeparameter)
       .delete();
 }
+
+addNote(String content, title, String uid) async {
+  var time = DateTime.now();
+  await FirebaseFirestore.instance
+      .collection('productivityapp')
+      .doc(uid)
+      .collection('notes')
+      .doc(time.toString())
+      .set({
+    'time': time.toString(),
+    'title': title,
+    'content': content,
+  });
+  log("NOTE ADDED : content is " + content);
+  // log(time.toString());
+}
+
+deleteNote(String uid, timeparameter) async {
+  await FirebaseFirestore.instance
+      .collection('productivityapp')
+      .doc(uid)
+      .collection('notes')
+      .doc(timeparameter)
+      .delete();
+
+  log("note deleted");
+  // log(time.toString());
+}
