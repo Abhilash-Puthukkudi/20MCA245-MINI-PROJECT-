@@ -53,3 +53,12 @@ updatetodo(String uid, String timeparameter, String updatetodo) async {
 // final FirebaseAuth auth = FirebaseAuth.instance;
 // final User? user = auth.currentUser;
 // final uid = user!.uid;
+
+todo_Delete(uid, timeparameter) {
+  FirebaseFirestore.instance
+      .collection('productivityapp')
+      .doc(uid)
+      .collection('todo')
+      .doc(timeparameter)
+      .delete();
+}
