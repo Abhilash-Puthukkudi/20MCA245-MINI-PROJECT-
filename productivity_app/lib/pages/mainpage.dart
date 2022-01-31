@@ -37,6 +37,7 @@ class _MainpageState extends State<Mainpage> {
         actions: [
           IconButton(
               onPressed: () async {
+                uid = '';
                 await FirebaseAuth.instance.signOut();
               },
               icon: Icon(Icons.exit_to_app))

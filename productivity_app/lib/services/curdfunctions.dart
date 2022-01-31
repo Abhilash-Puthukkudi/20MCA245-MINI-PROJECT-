@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 create(String collname, docName, name, animal, int age) async {
   await FirebaseFirestore.instance
@@ -38,3 +39,17 @@ addTodo(String content, String uid) async {
   log("content is " + content);
   log(time.toString());
 }
+
+updatetodo(String uid, String timeparameter, String updatetodo) async {
+  FirebaseFirestore.instance
+      .collection('productivityapp')
+      .doc(uid)
+      .collection('todo')
+      .doc(timeparameter)
+      .update({'todo': updatetodo});
+  log("updated");
+}
+
+// final FirebaseAuth auth = FirebaseAuth.instance;
+// final User? user = auth.currentUser;
+// final uid = user!.uid;
