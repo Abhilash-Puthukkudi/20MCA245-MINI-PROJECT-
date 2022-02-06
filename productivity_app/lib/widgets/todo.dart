@@ -148,6 +148,11 @@ class _TodoState extends State<Todo> {
                         child: TextFormField(
                           key: ValueKey('todo'),
                           controller: _todoController,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'please enter some text';
+                            }
+                          },
                           decoration:
                               InputDecoration(hintText: "Enter Task to Do"),
                           onSaved: (value) {

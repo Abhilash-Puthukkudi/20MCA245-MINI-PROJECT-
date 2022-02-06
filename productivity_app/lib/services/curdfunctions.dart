@@ -101,3 +101,20 @@ updateNote(
       .update({'content': updatecontent, 'title': updatetitle});
   log("updated");
 }
+
+adddaycounter(String startdate, enddate, uid, title) async {
+  var time = DateTime.now();
+  await FirebaseFirestore.instance
+      .collection('productivityapp')
+      .doc(uid)
+      .collection('daycountdown')
+      .doc(time.toString())
+      .set({
+    'time': time.toString(),
+    'start': startdate,
+    'end': enddate,
+    'title': title,
+  });
+  log("Day counter Added ");
+  // log(time.toString());
+}

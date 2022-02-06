@@ -33,6 +33,33 @@
   <link rel="manifest" href="manifest.json">
 </head>
 <body>
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.5/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.5/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyB4j343F3BJO8g25PG9YmsEZtEYcfRdmtw",
+      authDomain: "mini-project-cf872.firebaseapp.com",
+      projectId: "mini-project-cf872",
+      storageBucket: "mini-project-cf872.appspot.com",
+      messagingSenderId: "471339895380",
+      appId: "1:471339895380:web:6c719b9f6f7e4a6dd53bc1",
+      measurementId: "G-S3HGTLP8MY"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+  </script>
+
+  
+
+
   <!-- This script installs service_worker.js to provide PWA functionality to
        application. For more information, see:
        https://developers.google.com/web/fundamentals/primers/service-workers -->
@@ -100,28 +127,6 @@
       loadMainDartJs();
     }
   </script>
-  <script type="module">
-    // Import the functions you need from the SDKs you need
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.5/firebase-app.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.5/firebase-analytics.js";
-    // TODO: Add SDKs for Firebase products that you want to use
-    // https://firebase.google.com/docs/web/setup#available-libraries
   
-    // Your web app's Firebase configuration
-    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-    const firebaseConfig = {
-      apiKey: "AIzaSyB4j343F3BJO8g25PG9YmsEZtEYcfRdmtw",
-      authDomain: "mini-project-cf872.firebaseapp.com",
-      projectId: "mini-project-cf872",
-      storageBucket: "mini-project-cf872.appspot.com",
-      messagingSenderId: "471339895380",
-      appId: "1:471339895380:web:665890527a7f0273d53bc1",
-      measurementId: "G-DTGFFJCGTE"
-    };
-  
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
-  </script>
 </body>
 </html>

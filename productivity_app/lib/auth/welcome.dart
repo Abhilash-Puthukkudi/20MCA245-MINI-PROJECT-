@@ -21,6 +21,7 @@ class _WelcomeState extends State<Welcome> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Welcome"),
+        centerTitle: true,
       ),
       body: Form(
         key: _formkey,
@@ -29,10 +30,22 @@ class _WelcomeState extends State<Welcome> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Text(
+                "Login",
+                style: TextStyle(
+                    fontSize: 50,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.blue),
+              ),
               isLogin
                   ? Container()
                   : TextFormField(
-                      key: ValueKey('username'),
+                      validator: (user) {
+                        if (user == null || user.isEmpty) {
+                          return 'Please enter some text';
+                        }
+                      },
+                      key: ValueKey('user'),
                       decoration: InputDecoration(hintText: "Enter Username"),
                       onSaved: (value) {
                         setState(() {
@@ -42,6 +55,11 @@ class _WelcomeState extends State<Welcome> {
                     ),
               TextFormField(
                 key: ValueKey('email'),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'please enter some text';
+                  }
+                },
                 decoration: InputDecoration(hintText: "Enter email"),
                 onSaved: (value) {
                   setState(() {
@@ -51,6 +69,11 @@ class _WelcomeState extends State<Welcome> {
               ),
               TextFormField(
                 key: ValueKey('password'),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'please enter some text';
+                  }
+                },
                 obscureText: true,
                 decoration: InputDecoration(hintText: "Enter password"),
                 onSaved: (value) {
